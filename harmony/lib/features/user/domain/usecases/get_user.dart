@@ -6,10 +6,10 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/user.dart';
 import '../repositories/user_repository.dart';
 
-class getUser implements Usecase<User, GetParams> {
+class GetUser implements Usecase<User, GetParams> {
   final UserRepository repository;
 
-  getUser(this.repository);
+  GetUser(this.repository);
 
   @override
   Future<Either<Failure, User>> call(GetParams params) async {
@@ -19,7 +19,7 @@ class getUser implements Usecase<User, GetParams> {
 
 class GetParams extends Equatable{
   final String token;
-  GetParams({required this.token});
+  const GetParams({required this.token});
   
   @override
   List<Object?> get props => [id];

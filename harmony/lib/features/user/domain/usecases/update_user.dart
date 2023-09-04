@@ -19,7 +19,7 @@ class UpdateUser implements Usecase<User, UpdateParams> {
 
 class UpdateParams extends Equatable{
   final User user;
-  UpdateParams({required this.user});
+  const UpdateParams({required this.user});
   
   @override
   List<Object?> get props => [user];
