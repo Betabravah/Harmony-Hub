@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
-import 'package:harmony/features/user/domain/entities/user.dart';
+import '../../../domain/entities/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/error/exceptions.dart';
-import '../../../../../core/error/failures.dart';
 import '../../models/user_model.dart';
 import 'local_datasource.dart';
 
@@ -22,27 +20,25 @@ class UserLocalDatasourceImpl implements UserLocalDatasource {
     );
   }
 
-  Future<Either<Failure, UserModel>> getUser(String id) async {
+  Future<UserModel> getUser(String id) async {
     try {
       final jsonString = sharedPreferences.getString(CACHED_USER);
       if (jsonString != null) {
         return Future.value(
-          Right(
-            UserModel.fromJson(
-              json.decode(jsonString),
-            ),
+          UserModel.fromJson(
+            json.decode(jsonString),
           ),
         );
       } else {
         throw CacheException(message: 'No cached user found.');
       }
     } on CacheException {
-      return Left(CacheFailure());
+      throw CacheException(message: 'No cached user found.');
     }
   }
 
   @override
-  Future<Either<Failure, UserModel>> updateUser(User user) async {
+  Future<UserModel> updateUser(User user) async {
     try {
       final jsonStringList = sharedPreferences.getStringList(CACHED_USER);
 
@@ -56,16 +52,16 @@ class UserLocalDatasourceImpl implements UserLocalDatasource {
         for (int i = 0; i < users.length; i++) {
           if (users[i].id == user.id) {
             users[i] = user as UserModel;
-            return Right(users[i]);
+            return user;
           }
         }
 
-        return Left(CacheFailure());
+        throw CacheException(message: 'User not Found');
       } else {
-        throw CacheException(message: 'User ot Found');
+        throw CacheException(message: 'User not Found');
       }
     } catch (e) {
-      return Left(CacheFailure());
+      throw CacheException(message: 'User not Found');
     }
   }
 }
