@@ -6,7 +6,7 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/user.dart';
 import '../repositories/user_repository.dart';
 
-class UpdateUser implements Usecase<User, UpdateParams> {
+class UpdateUser implements UseCase<User, UpdateParams> {
   final UserRepository repository;
 
   UpdateUser(this.repository);

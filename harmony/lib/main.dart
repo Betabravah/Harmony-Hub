@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/music/presentation/screens/onboarding.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,8 +15,18 @@ class MyApp extends StatelessWidget {
       title: 'Harmony',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+                fontSize: 35, fontFamily: 'Poppins', color: Colors.white),
+            bodySmall: TextStyle(
+                fontSize: 16, color: Colors.grey, fontFamily: 'Poppins'),
+            displayLarge: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5)),
       ),
-      home: const Text('Harmony'),
+      home: const OnboardingScreen(),
     );
   }
 }

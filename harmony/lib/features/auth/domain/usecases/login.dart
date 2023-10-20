@@ -7,7 +7,7 @@ import '../entities/auth_entity.dart';
 import '../entities/login_entity.dart';
 import '../repositories/auth_repository.dart';
 
-class LogIn implements Usecase<void, LogInParams> {
+class LogIn implements UseCase<void, LogInParams> {
   late final AuthRepository repository;
   LogIn(AuthRepository repository);
 

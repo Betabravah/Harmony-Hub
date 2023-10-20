@@ -5,7 +5,15 @@ abstract class Exception {
 }
 
 class CacheException implements Exception {
+  @override
   final String message;
 
   CacheException({required this.message});
+}
+
+class ServerException implements Exception {
+  @override
+  final String message;
+
+  ServerException({required this.message});
 }

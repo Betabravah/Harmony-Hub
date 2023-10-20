@@ -8,7 +8,7 @@ import '../entities/auth_user_info.dart';
 import '../entities/signup_entity.dart';
 import '../repositories/auth_repository.dart';
 
-class SignUp implements Usecase<AuthenticatedUserInfo, SignUpParams> {
+class SignUp implements UseCase<AuthenticatedUserInfo, SignUpParams> {
   late final AuthRepository repository;
   @override
   Future<Either<Failure, AuthenticatedUserInfo>> call(SignUpParams params) async {
