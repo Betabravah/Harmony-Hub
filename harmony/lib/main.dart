@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'features/music/presentation/screens/home_page.dart';
 import 'features/music/presentation/screens/onboarding.dart';
 
 void main() {
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5)),
       ),
-      home: const OnboardingScreen(),
+      home: const Scaffold(
+        body: HomePage(),
+      ),
     );
   }
 }
